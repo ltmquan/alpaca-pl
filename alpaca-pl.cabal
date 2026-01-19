@@ -58,7 +58,9 @@ library
     import:           warnings
 
     -- Modules exported by the library.
-    exposed-modules:  MyLib
+    exposed-modules:  
+        AST
+      , Parser
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -67,7 +69,11 @@ library
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.21.0.0
+    build-depends:    
+        base ^>=4.21.0.0
+      , megaparsec ^>=9.6.0
+      , parser-combinators ^>=1.3.0
+      , text ^>=2.1
 
     -- Directories containing source files.
     hs-source-dirs:   src
@@ -90,8 +96,8 @@ executable alpaca-pl
 
     -- Other library packages from which modules are imported.
     build-depends:
-        base ^>=4.21.0.0,
-        alpaca-pl
+        base ^>=4.21.0.0
+      , alpaca-pl
 
     -- Directories containing source files.
     hs-source-dirs:   app
@@ -107,7 +113,7 @@ test-suite alpaca-pl-test
     default-language: GHC2024
 
     -- Modules included in this executable, other than Main.
-    -- other-modules:
+    other-modules:    ParserTest
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
@@ -123,5 +129,9 @@ test-suite alpaca-pl-test
 
     -- Test dependencies.
     build-depends:
-        base ^>=4.21.0.0,
-        alpaca-pl
+        base ^>=4.21.0.0
+      , alpaca-pl
+      , hspec ^>=2.11.0
+      , hspec-megaparsec ^>=2.2.0
+      , megaparsec ^>=9.6.0
+      , text ^>=2.1
